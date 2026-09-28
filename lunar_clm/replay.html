@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lunar CLM · Flight recorder</title>
+<style>
+:root{color-scheme:dark;font:15px system-ui,sans-serif;color:#e7eeee;background:#080e16}*{box-sizing:border-box}body{max-width:1480px;margin:auto;padding:30px}header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #283443;padding-bottom:20px}h1{font-size:26px;font-weight:550;letter-spacing:-1px;margin:5px 0}.eyebrow{color:#72e4cc;font:11px monospace;letter-spacing:3px}#mode{border:1px solid #476556;border-radius:30px;padding:10px 15px;color:#9ff4cc;font:12px monospace}.layout{display:grid;grid-template-columns:minmax(0,1fr) 310px;gap:24px;margin-top:24px}.viewport{background:#060b12;border:1px solid #273444;border-radius:12px;overflow:hidden;position:relative}canvas{width:100%;display:block;aspect-ratio:1000/700}.hud{display:flex;gap:24px;padding:18px 24px;border-bottom:1px solid #202e3a;font:12px monospace;color:#97adbb}.hud b{display:block;color:#e7eeee;font-size:20px;margin-top:6px}.panel{border:1px solid #273444;border-radius:12px;padding:20px;margin-bottom:16px}.panel h2{font-size:11px;color:#96a9b7;letter-spacing:2px;font-weight:500;margin:0 0 18px}.status{font-size:28px;margin:8px 0;color:#9ff4cc}p{color:#98aab8;line-height:1.65;font-size:13px}.row{display:flex;justify-content:space-between;gap:8px;font:12px monospace;margin:14px 0}.row span:first-child{color:#8fa3b4}.bar{height:5px;background:#23313d;margin:5px 0 14px;border-radius:6px}.bar i{display:block;height:100%;background:#72e4cc;border-radius:6px}button,select{font:13px system-ui;background:#192731;color:#f1fbff;border:1px solid #395060;border-radius:6px;padding:9px 13px;cursor:pointer}button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid #72e4cc;outline-offset:3px}.controls{display:flex;align-items:center;gap:12px;margin:18px 0}input[type=range]{accent-color:#72e4cc;min-width:60px;flex:1}footer{font:11px monospace;color:#738795;margin-top:24px;line-height:1.8}.warning{color:#ffd08a}#probabilities{font:12px monospace}details{font-size:12px;color:#96a9b7}pre{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.6} @media(max-width:900px){body{padding:15px}.layout{grid-template-columns:1fr}.hud{gap:14px;padding:14px}.hud b{font-size:16px}header{align-items:flex-start}.controls{flex-wrap:wrap}}
+</style>
+<header><div><div class="eyebrow">LOCAL INTELLIGENCE / LUNAR FLIGHT</div><h1>Lunar CLM</h1></div><div id="mode"></div></header>
+<div class="layout"><main>
+<div class="viewport"><div class="hud"><div>ALTITUDE<b id="altitude"></b></div><div>VERTICAL<b id="vertical"></b></div><div>HORIZONTAL<b id="horizontal"></b></div><div>FUEL<b id="fuel"></b></div></div><canvas id="flight" width="1000" height="700" aria-label="Recorded lander flight above lunar terrain"></canvas></div>
+<div class="controls"><button id="play" type="button">Pause</button><button id="restart" type="button">Restart</button><input id="scrub" aria-label="Flight timeline" type="range" min="0" value="0"><label>Speed <select id="speed"><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="4">4×</option><option value="16">16×</option></select></label><label>Flight <select id="episode"></select></label></div>
+<footer>RECORDED SIMULATION · Playback uses simulation time. Inference waits between control steps.<br>Landing envelope: |horizontal| ≤ 2 m/s · downward ≤ 3 m/s · |tilt| ≤ 8° · hull inside pad.</footer>
+</main><aside>
+<section class="panel"><h2>FLIGHT TELEMETRY</h2><div id="status" class="status"></div><div class="row"><span>Mission time</span><span id="time"></span></div><div class="row"><span>Target pad</span><span id="target"></span></div><div class="row"><span>Tilt</span><span id="tilt"></span></div><div class="row"><span>Score</span><span id="score"></span></div></section>
+<section class="panel"><h2>DECISION / CLM</h2><div id="probabilities"></div><div class="row"><span>Proposed</span><span id="proposed"></span></div><div class="row"><span>Executed</span><span id="executed"></span></div><div class="row"><span>Decision latency</span><span id="latency"></span></div><p id="shield"></p></section>
+<section class="panel"><h2>EXPERIMENT</h2><p id="explanation"></p><details><summary>View state sent to CLM</summary><pre id="prompt"></pre></details></section>
+</aside></div>
+<script>
+"use strict";
+const recording = /* RECORDING */null;
+const $=id=>document.getElementById(id), canvas=$("flight"), ctx=canvas.getContext("2d");
+let episode=0,index=0,playing=true,elapsed=0,last=null;
+const mode=recording.pilot.mode, assisted=mode.endsWith("assisted");
+const modelLabel=mode.startsWith("small")?"SMALL CLM / MLX":"CLM";
+const trails=recording.episodes.map(e=>e.frames.map(f=>[f.before.x,f.before.y]));
+$("mode").textContent=mode==="baseline"?"GUIDANCE BASELINE · NO MODEL":assisted?`${modelLabel} · ASSISTED`:`${modelLabel} · RAW EXECUTION`;
+$("explanation").textContent=assisted?"CLM receives telemetry and guidance requests. Every disagreement is replaced by the deterministic guidance command. Successful assisted flights demonstrate the guidance controller; they do not prove learned piloting.":mode!=="baseline"?"CLM receives telemetry and guidance requests. Its chosen commands execute directly, including mistakes. No execution shield is active.":"Deterministic position and velocity feedback. No CLM model is loaded and no inference occurs.";
+recording.episodes.forEach((e,i)=>{const o=document.createElement("option");o.value=i;o.textContent=`Seed ${e.summary.seed} · ${e.summary.status}`;$("episode").append(o)});
+function setEpisode(){episode=Number($("episode").value);index=0;elapsed=0;last=null;$("scrub").max=recording.episodes[episode].frames.length;render()}
+function command(c){return `${["L","—","R"][c.turn+1]} / ${Math.round(c.throttle*100)}%`}
+function line(points,color,width=1){ctx.strokeStyle=color;ctx.lineWidth=width;ctx.beginPath();points.forEach(([x,y],i)=>i?ctx.lineTo(x,700-y):ctx.moveTo(x,700-y));ctx.stroke()}
+function render(){
+ const e=recording.episodes[episode], end=index===e.frames.length, f=e.frames[Math.min(index,e.frames.length-1)],s=end?e.summary:f.before,d=f.decision;
+ $("scrub").value=index;$("altitude").textContent=`${Math.max(0,s.y-recording.world.pads[e.summary.target][2]-8).toFixed(0)} m`;
+ $("vertical").textContent=`${s.vy.toFixed(1)} m/s`;$("horizontal").textContent=`${s.vx.toFixed(1)} m/s`;$("fuel").textContent=`${s.fuel.toFixed(1)}%`;
+ $("status").textContent=s.status.replaceAll("_"," ").toUpperCase();$("time").textContent=`${s.time.toFixed(1)} s`;$("target").textContent=`0${e.summary.target+1}`;$("tilt").textContent=`${s.angle.toFixed(1)}°`;$("score").textContent=s.score;
+ $("proposed").textContent=command(d.proposed);$("executed").textContent=command(d.executed);$("latency").textContent=`${d.latency_ms.toFixed(1)} ms`;$("prompt").textContent=d.prompt;
+ $("shield").textContent=end?`${e.summary.interventions} intervention(s) / ${e.summary.decisions} decisions. Final outcome: ${s.status}.`:d.intervened?"GUIDANCE OVERRIDE · Model proposal replaced.":assisted?"Model agrees with guidance.":"No override.";$("shield").className=d.intervened?"warning":"";
+ $("probabilities").replaceChildren();
+ if(d.answers)for(const [name,answer] of Object.entries(d.answers)){for(const [label,p] of Object.entries(answer.probabilities)){const row=document.createElement("div");row.className="row";row.textContent=`${name} / ${label}    ${(p*100).toFixed(1)}%`;const bar=document.createElement("div");bar.className="bar";const fill=document.createElement("i");fill.style.width=`${Math.max(0,Math.min(100,p*100))}%`;bar.append(fill);$("probabilities").append(row,bar)}}
+ else $("probabilities").textContent="No model probabilities (baseline).";
+ ctx.fillStyle="#060b12";ctx.fillRect(0,0,1000,700);
+ for(let i=0;i<90;i++){ctx.fillStyle=i%7?"#344553":"#8aadb9";ctx.fillRect((i*167+31)%1000,(i*97+13)%570,1.5,1.5)}
+ ctx.strokeStyle="#12232d";ctx.lineWidth=1;for(let x=0;x<1000;x+=100){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,700);ctx.stroke()}
+ line(trails[episode].slice(0,index+1),"#244c50",1.5);
+ line(recording.world.terrain,"#aec8ca",1.6);
+ ctx.font="13px monospace";recording.world.pads.forEach((p,i)=>{line([[p[0],p[2]],[p[1],p[2]]],i===e.summary.target?"#8fffe0":"#81949d",4);ctx.fillStyle="#8fffe0";ctx.fillText(`${p[3]}× · PAD ${i+1}`,p[0],700-p[2]+25)});
+ const mix=end?1:Math.min(1,elapsed/(f.after.time-f.before.time));
+ const visual={x:s.x+(f.after.x-s.x)*mix,y:s.y+(f.after.y-s.y)*mix,angle:s.angle+((f.after.angle-s.angle+540)%360-180)*mix};
+ ctx.save();ctx.translate(visual.x,700-visual.y);ctx.rotate(visual.angle*Math.PI/180);ctx.strokeStyle=s.status==="crashed"?"#ff947d":"#dbfff4";ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(0,-10);ctx.lineTo(7,-4);ctx.lineTo(6,4);ctx.lineTo(-6,4);ctx.lineTo(-7,-4);ctx.closePath();ctx.moveTo(-5,4);ctx.lineTo(-6,8);ctx.lineTo(-8,8);ctx.moveTo(5,4);ctx.lineTo(6,8);ctx.lineTo(8,8);ctx.stroke();
+ if(!end&&d.executed.throttle>0&&s.fuel>0){ctx.strokeStyle="#ffd08a";ctx.beginPath();ctx.moveTo(-3,6);ctx.lineTo(0,9+d.executed.throttle*15);ctx.lineTo(3,6);ctx.stroke()}ctx.restore();
+ ctx.fillStyle="#8fa3b4";ctx.font="12px monospace";ctx.fillText(`SEED ${e.summary.seed} / FRAME ${index} / ${e.frames.length}`,24,30);
+ $("play").textContent=playing?"Pause":"Play";
+}
+$("play").onclick=()=>{if(index===recording.episodes[episode].frames.length){index=0;elapsed=0}playing=!playing;last=null;render()};
+$("restart").onclick=()=>{index=0;elapsed=0;playing=true;last=null;render()};
+$("scrub").oninput=()=>{index=Number($("scrub").value);elapsed=0;playing=false;render()};$("episode").onchange=setEpisode;
+function tick(now){if(last!==null&&playing){elapsed+=Math.min((now-last)/1000,0.1)*Number($("speed").value);const frames=recording.episodes[episode].frames;while(index<frames.length){const duration=frames[index].after.time-frames[index].before.time;if(elapsed<duration)break;elapsed-=duration;index++}if(index>=frames.length)playing=false;render()}last=now;requestAnimationFrame(tick)}
+setEpisode();requestAnimationFrame(tick);
+</script>
+</html>

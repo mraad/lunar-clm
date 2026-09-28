@@ -1,0 +1,2108 @@
+{
+  "backend": "clm",
+  "pilot": {
+    "mode": "clm",
+    "model": "clm-latest",
+    "transport": "HTTP",
+    "endpoint": "http://127.0.0.1:8700"
+  },
+  "python": "3.14.7",
+  "platform": "macOS-26.7-arm64-arm-64bit-Mach-O",
+  "seed": 3000,
+  "corpus_sha256": "ffc8acd5183c0dd143cacd6ea21216a59b0b47399ca37e5bdd79450e28dd6541",
+  "load_seconds": 6.512500112876296e-05,
+  "first_call_ms": 1815.4794159927405,
+  "warmup": [
+    {
+      "seed": 2900,
+      "target": 0,
+      "time": 0,
+      "latency_ms": 1815.4794159927405,
+      "expected": {
+        "turn": -1,
+        "throttle": 0
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 1794.7,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 278,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 2901,
+      "target": 1,
+      "time": 2.0000000000000013,
+      "latency_ms": 1285.8863339642994,
+      "expected": {
+        "turn": 0,
+        "throttle": 0
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": true,
+      "server_latency_ms": 1284.8,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 266,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 2902,
+      "target": 2,
+      "time": 0.8000000000000004,
+      "latency_ms": 806.9762079976499,
+      "expected": {
+        "turn": -1,
+        "throttle": 0
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 805.9,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 264,
+        "output_tokens": 0
+      }
+    }
+  ],
+  "summary": {
+    "samples": 96,
+    "p50_ms": 869.002958497731,
+    "p95_ms": 1378.0713330488652,
+    "mean_ms": 931.0027448300389,
+    "decisions_per_second": 1.0741106893111867,
+    "within_200ms_fraction": 0.0,
+    "guidance_agreement": 0.15625
+  },
+  "rows": [
+    {
+      "seed": 3000,
+      "target": 0,
+      "time": 0,
+      "latency_ms": 703.1554999994114,
+      "expected": {
+        "turn": -1,
+        "throttle": 0
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 702.3,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 262,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3000,
+      "target": 0,
+      "time": 2.2000000000000015,
+      "latency_ms": 845.1971250469796,
+      "expected": {
+        "turn": 1,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 844.4,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 262,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3000,
+      "target": 0,
+      "time": 4.59999999999999,
+      "latency_ms": 1285.3209169697948,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 1284.2,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 264,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3000,
+      "target": 0,
+      "time": 6.799999999999943,
+      "latency_ms": 751.6999589861371,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 750.6,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 258,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3000,
+      "target": 0,
+      "time": 9.199999999999893,
+      "latency_ms": 697.2975410171784,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 696.5,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 258,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3000,
+      "target": 0,
+      "time": 11.399999999999846,
+      "latency_ms": 711.3071249914356,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 710.3,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 258,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3000,
+      "target": 0,
+      "time": 13.799999999999795,
+      "latency_ms": 686.012749967631,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 685.0,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 258,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3000,
+      "target": 0,
+      "time": 15.999999999999748,
+      "latency_ms": 1057.9260000376962,
+      "expected": {
+        "turn": 1,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 1057.0,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 258,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3000,
+      "target": 0,
+      "time": 18.399999999999697,
+      "latency_ms": 795.4910410335287,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 794.6,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 258,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3000,
+      "target": 0,
+      "time": 20.799999999999645,
+      "latency_ms": 807.2197909932584,
+      "expected": {
+        "turn": 0,
+        "throttle": 0
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": true,
+      "server_latency_ms": 806.2,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 258,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3000,
+      "target": 0,
+      "time": 22.9999999999996,
+      "latency_ms": 696.8944999971427,
+      "expected": {
+        "turn": 0,
+        "throttle": 0
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": true,
+      "server_latency_ms": 696.0,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 258,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3000,
+      "target": 0,
+      "time": 25.399999999999547,
+      "latency_ms": 807.2312089498155,
+      "expected": {
+        "turn": 0,
+        "throttle": 0
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": true,
+      "server_latency_ms": 806.4,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 258,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3000,
+      "target": 0,
+      "time": 27.5999999999995,
+      "latency_ms": 963.4361250209622,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 962.4,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 256,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3000,
+      "target": 0,
+      "time": 29.99999999999945,
+      "latency_ms": 708.6740839877166,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 707.4,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 252,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3000,
+      "target": 0,
+      "time": 32.199999999999434,
+      "latency_ms": 867.3189579858445,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 866.4,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 252,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3000,
+      "target": 0,
+      "time": 34.59999999999981,
+      "latency_ms": 814.1124999965541,
+      "expected": {
+        "turn": -1,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 813.2,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 252,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3000,
+      "target": 0,
+      "time": 37.000000000000185,
+      "latency_ms": 1053.7187079899013,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 1052.9,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 252,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3000,
+      "target": 0,
+      "time": 39.20000000000053,
+      "latency_ms": 1820.8438330329955,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 1820.1,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 252,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3000,
+      "target": 0,
+      "time": 41.600000000000904,
+      "latency_ms": 1927.2228750051,
+      "expected": {
+        "turn": -1,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 1926.5,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 252,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3000,
+      "target": 0,
+      "time": 43.80000000000125,
+      "latency_ms": 1201.6157500329427,
+      "expected": {
+        "turn": -1,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 1200.8,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 252,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3000,
+      "target": 0,
+      "time": 46.20000000000162,
+      "latency_ms": 1504.9158749752678,
+      "expected": {
+        "turn": 1,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 1504.2,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 252,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3000,
+      "target": 0,
+      "time": 48.40000000000197,
+      "latency_ms": 1378.0713330488652,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 1377.4,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 250,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3000,
+      "target": 0,
+      "time": 50.80000000000234,
+      "latency_ms": 1174.9949589720927,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 1174.3,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 250,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3000,
+      "target": 0,
+      "time": 53.000000000002686,
+      "latency_ms": 1306.0919169802219,
+      "expected": {
+        "turn": 1,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 1305.4,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 250,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3000,
+      "target": 0,
+      "time": 55.40000000000306,
+      "latency_ms": 1311.9762919959612,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 1311.3,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 250,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3000,
+      "target": 0,
+      "time": 57.800000000003436,
+      "latency_ms": 1102.1601670072414,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 1101.3,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 250,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3000,
+      "target": 0,
+      "time": 60.00000000000378,
+      "latency_ms": 1019.5759579655714,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 1018.6,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 250,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3000,
+      "target": 0,
+      "time": 62.400000000004155,
+      "latency_ms": 985.1073340396397,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 984.1,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 250,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3000,
+      "target": 0,
+      "time": 64.60000000000429,
+      "latency_ms": 994.5629999856465,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 993.4,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 250,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3000,
+      "target": 0,
+      "time": 67.00000000000381,
+      "latency_ms": 1061.3812080118805,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 1055.4,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 250,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3000,
+      "target": 0,
+      "time": 69.20000000000337,
+      "latency_ms": 908.6856669746339,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 907.4,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 250,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3000,
+      "target": 0,
+      "time": 71.6000000000029,
+      "latency_ms": 907.9140420071781,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 906.8,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 250,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3001,
+      "target": 1,
+      "time": 0.19999999999999998,
+      "latency_ms": 1191.2440419546328,
+      "expected": {
+        "turn": 1,
+        "throttle": 0
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 1190.3,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 262,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3001,
+      "target": 1,
+      "time": 2.4000000000000017,
+      "latency_ms": 923.8845829968341,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 922.4,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 264,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3001,
+      "target": 1,
+      "time": 4.799999999999986,
+      "latency_ms": 761.7589999572374,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 760.0,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 264,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3001,
+      "target": 1,
+      "time": 6.999999999999939,
+      "latency_ms": 762.231000000611,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 760.5,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 264,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3001,
+      "target": 1,
+      "time": 9.399999999999888,
+      "latency_ms": 1137.3002500040457,
+      "expected": {
+        "turn": 0,
+        "throttle": 0
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": true,
+      "server_latency_ms": 1136.2,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 264,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3001,
+      "target": 1,
+      "time": 11.599999999999842,
+      "latency_ms": 1148.5404589911923,
+      "expected": {
+        "turn": 1,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 1147.7,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 264,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3001,
+      "target": 1,
+      "time": 13.99999999999979,
+      "latency_ms": 1217.434041958768,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 1216.5,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 264,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3001,
+      "target": 1,
+      "time": 16.199999999999743,
+      "latency_ms": 1070.1359589584172,
+      "expected": {
+        "turn": 0,
+        "throttle": 0
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": true,
+      "server_latency_ms": 1069.2,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 258,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3001,
+      "target": 1,
+      "time": 18.599999999999692,
+      "latency_ms": 1127.4774160119705,
+      "expected": {
+        "turn": 1,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 1126.1,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 258,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3001,
+      "target": 1,
+      "time": 20.99999999999964,
+      "latency_ms": 1470.898457977455,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 1469.6,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 258,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3001,
+      "target": 1,
+      "time": 23.199999999999594,
+      "latency_ms": 1143.3839169912972,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 1141.4,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 258,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3001,
+      "target": 1,
+      "time": 25.599999999999543,
+      "latency_ms": 1025.9202499873936,
+      "expected": {
+        "turn": 1,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 1023.5,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 258,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3001,
+      "target": 1,
+      "time": 27.799999999999496,
+      "latency_ms": 1065.8452499774285,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 1063.8,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 258,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3001,
+      "target": 1,
+      "time": 30.199999999999445,
+      "latency_ms": 813.8767919735983,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 812.4,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 254,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3001,
+      "target": 1,
+      "time": 32.399999999999466,
+      "latency_ms": 842.1307500102557,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 840.5,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 252,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3001,
+      "target": 1,
+      "time": 34.79999999999984,
+      "latency_ms": 991.6797910118476,
+      "expected": {
+        "turn": 1,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 989.9,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 252,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3001,
+      "target": 1,
+      "time": 37.200000000000216,
+      "latency_ms": 870.6869590096176,
+      "expected": {
+        "turn": 1,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 869.4,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 252,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3001,
+      "target": 1,
+      "time": 39.40000000000056,
+      "latency_ms": 908.577082969714,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 907.5,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 252,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3001,
+      "target": 1,
+      "time": 41.800000000000935,
+      "latency_ms": 642.7747920388356,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 641.5,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 252,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3001,
+      "target": 1,
+      "time": 44.00000000000128,
+      "latency_ms": 691.3367919623852,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 690.0,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 252,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3001,
+      "target": 1,
+      "time": 46.400000000001654,
+      "latency_ms": 669.7591249831021,
+      "expected": {
+        "turn": 0,
+        "throttle": 0
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": true,
+      "server_latency_ms": 668.4,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 252,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3001,
+      "target": 1,
+      "time": 48.600000000002,
+      "latency_ms": 743.9431669772603,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 742.1,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 250,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3001,
+      "target": 1,
+      "time": 51.00000000000237,
+      "latency_ms": 774.820999999065,
+      "expected": {
+        "turn": -1,
+        "throttle": 0
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 773.1,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 250,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3001,
+      "target": 1,
+      "time": 53.20000000000272,
+      "latency_ms": 739.5564159960486,
+      "expected": {
+        "turn": 1,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 737.6,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 250,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3001,
+      "target": 1,
+      "time": 55.60000000000309,
+      "latency_ms": 794.0596669795923,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 792.4,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 250,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3001,
+      "target": 1,
+      "time": 58.00000000000347,
+      "latency_ms": 798.5174999921583,
+      "expected": {
+        "turn": 0,
+        "throttle": 0
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": true,
+      "server_latency_ms": 797.0,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 250,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3001,
+      "target": 1,
+      "time": 60.20000000000381,
+      "latency_ms": 717.2157500172034,
+      "expected": {
+        "turn": 1,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 715.2,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 250,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3001,
+      "target": 1,
+      "time": 62.60000000000419,
+      "latency_ms": 750.9603339713067,
+      "expected": {
+        "turn": -1,
+        "throttle": 0
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 749.5,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 250,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3001,
+      "target": 1,
+      "time": 64.80000000000425,
+      "latency_ms": 733.6200830177404,
+      "expected": {
+        "turn": 1,
+        "throttle": 0
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 731.8,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 250,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3001,
+      "target": 1,
+      "time": 67.20000000000377,
+      "latency_ms": 758.8156250421889,
+      "expected": {
+        "turn": -1,
+        "throttle": 0
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 756.6,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 250,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3001,
+      "target": 1,
+      "time": 69.40000000000333,
+      "latency_ms": 640.6192500144243,
+      "expected": {
+        "turn": -1,
+        "throttle": 0
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 638.5,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 250,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3001,
+      "target": 1,
+      "time": 71.80000000000285,
+      "latency_ms": 1042.3272909829393,
+      "expected": {
+        "turn": 0,
+        "throttle": 0
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": true,
+      "server_latency_ms": 1040.9,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 250,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3001,
+      "target": 1,
+      "time": 74.20000000000238,
+      "latency_ms": 881.3910420285538,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 880.1,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 250,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3002,
+      "target": 2,
+      "time": 1.4000000000000008,
+      "latency_ms": 746.9762910041027,
+      "expected": {
+        "turn": 0,
+        "throttle": 0
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": true,
+      "server_latency_ms": 745.4,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 266,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3002,
+      "target": 2,
+      "time": 3.800000000000003,
+      "latency_ms": 765.4070829739794,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 763.3,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 264,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3002,
+      "target": 2,
+      "time": 5.99999999999996,
+      "latency_ms": 911.3614170346409,
+      "expected": {
+        "turn": -1,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": -1,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 909.8,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 264,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3002,
+      "target": 2,
+      "time": 8.39999999999991,
+      "latency_ms": 745.6765420502052,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 744.0,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 264,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3002,
+      "target": 2,
+      "time": 10.599999999999863,
+      "latency_ms": 852.011083974503,
+      "expected": {
+        "turn": 0,
+        "throttle": 0
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": true,
+      "server_latency_ms": 850.5,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 264,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3002,
+      "target": 2,
+      "time": 12.999999999999812,
+      "latency_ms": 1036.7465839954093,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 1035.3,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 264,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3002,
+      "target": 2,
+      "time": 15.199999999999765,
+      "latency_ms": 1121.5221660095267,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 1120.4,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 258,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3002,
+      "target": 2,
+      "time": 17.599999999999714,
+      "latency_ms": 1091.8401250382885,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 1090.6,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 258,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3002,
+      "target": 2,
+      "time": 19.999999999999662,
+      "latency_ms": 931.3442499842495,
+      "expected": {
+        "turn": 0,
+        "throttle": 0
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": true,
+      "server_latency_ms": 930.2,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 258,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3002,
+      "target": 2,
+      "time": 22.199999999999616,
+      "latency_ms": 797.2326659946702,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 795.6,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 258,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3002,
+      "target": 2,
+      "time": 24.599999999999564,
+      "latency_ms": 830.3399999858811,
+      "expected": {
+        "turn": 0,
+        "throttle": 0
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": true,
+      "server_latency_ms": 828.5,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 258,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3002,
+      "target": 2,
+      "time": 26.799999999999518,
+      "latency_ms": 829.6552500105463,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 828.0,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 256,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3002,
+      "target": 2,
+      "time": 29.199999999999466,
+      "latency_ms": 774.9227919848636,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 773.3,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 252,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3002,
+      "target": 2,
+      "time": 31.39999999999942,
+      "latency_ms": 745.9916250081733,
+      "expected": {
+        "turn": -1,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 744.2,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 252,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3002,
+      "target": 2,
+      "time": 33.799999999999685,
+      "latency_ms": 808.9650000329129,
+      "expected": {
+        "turn": 1,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 806.8,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 252,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3002,
+      "target": 2,
+      "time": 36.20000000000006,
+      "latency_ms": 988.7174169998616,
+      "expected": {
+        "turn": 1,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 987.7,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 252,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3002,
+      "target": 2,
+      "time": 38.400000000000404,
+      "latency_ms": 872.5870829657651,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 871.1,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 252,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3002,
+      "target": 2,
+      "time": 40.80000000000078,
+      "latency_ms": 826.3776249950752,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 824.3,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 252,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3002,
+      "target": 2,
+      "time": 43.00000000000112,
+      "latency_ms": 948.1266249786131,
+      "expected": {
+        "turn": 1,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 946.0,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 252,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3002,
+      "target": 2,
+      "time": 45.4000000000015,
+      "latency_ms": 1244.3641669815406,
+      "expected": {
+        "turn": 0,
+        "throttle": 0
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": true,
+      "server_latency_ms": 1243.4,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 252,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3002,
+      "target": 2,
+      "time": 47.60000000000184,
+      "latency_ms": 778.6762499599718,
+      "expected": {
+        "turn": -1,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 776.7,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 250,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3002,
+      "target": 2,
+      "time": 50.00000000000222,
+      "latency_ms": 954.7072920249775,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 953.0,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 250,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3002,
+      "target": 2,
+      "time": 52.20000000000256,
+      "latency_ms": 766.7670419905335,
+      "expected": {
+        "turn": 0,
+        "throttle": 0
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": true,
+      "server_latency_ms": 765.0,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 250,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3002,
+      "target": 2,
+      "time": 54.600000000002936,
+      "latency_ms": 922.5444159819745,
+      "expected": {
+        "turn": 1,
+        "throttle": 0
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 920.8,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 250,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3002,
+      "target": 2,
+      "time": 57.00000000000331,
+      "latency_ms": 892.7436659578234,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 891.4,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 250,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3002,
+      "target": 2,
+      "time": 59.200000000003655,
+      "latency_ms": 760.4047919739969,
+      "expected": {
+        "turn": 0,
+        "throttle": 0
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": true,
+      "server_latency_ms": 759.0,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 250,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3002,
+      "target": 2,
+      "time": 61.60000000000403,
+      "latency_ms": 676.757917040959,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 675.1,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 250,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3002,
+      "target": 2,
+      "time": 63.800000000004374,
+      "latency_ms": 696.2373750284314,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 694.5,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 250,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3002,
+      "target": 2,
+      "time": 66.20000000000397,
+      "latency_ms": 751.1706249788404,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 749.9,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 250,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3002,
+      "target": 2,
+      "time": 68.40000000000353,
+      "latency_ms": 685.4674170026556,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 684.2,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 250,
+        "output_tokens": 0
+      }
+    },
+    {
+      "seed": 3002,
+      "target": 2,
+      "time": 70.80000000000305,
+      "latency_ms": 910.7630419894122,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": false,
+      "server_latency_ms": 909.4,
+      "usage": {
+        "billing_units": 2,
+        "input_tokens": 250,
+        "output_tokens": 0
+      }
+    }
+  ],
+  "method": "3 excluded warmup calls; unique states; fixed cached actions; sequential wall latency including guidance, formatting, inference and transport; excludes model/server startup and physics"
+}

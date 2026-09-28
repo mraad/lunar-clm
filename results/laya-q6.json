@@ -1,0 +1,1790 @@
+{
+  "backend": "laya",
+  "pilot": {
+    "mode": "laya",
+    "model": "../lunar-laya/models/lunar-laya-q6",
+    "revision": null,
+    "training": {
+      "method": "supervised guidance imitation; cross entropy",
+      "source": "aac6fef/laya-multilingual-mlx",
+      "source_revision": "f2b4faf51023039425946074e2cf1361d2db11d5",
+      "world_size": 3,
+      "epochs": 3,
+      "encoder_layers": 2,
+      "trainable_parameters": 24801793,
+      "dataset": {
+        "teacher": "lunar_laya.pilot.guidance",
+        "questions": {
+          "rotation": {
+            "type": "choice",
+            "instructions": "Control lunar lander tilt. Follow the requested tilt correction.",
+            "criteria": {
+              "left": "Decrease tilt angle",
+              "hold": "Keep current tilt",
+              "right": "Increase tilt angle"
+            }
+          },
+          "engine": {
+            "type": "choice",
+            "instructions": "Control lunar lander engine. Follow the requested engine power.",
+            "criteria": {
+              "off": "Zero thrust",
+              "half": "Half thrust",
+              "full": "Full thrust"
+            }
+          }
+        },
+        "prompt_contains_requested_labels": true,
+        "splits": {
+          "train": {
+            "rows": 13022,
+            "rollout_seeds": [
+              1000,
+              1031
+            ],
+            "labels": {
+              "rotation:left": 1576,
+              "engine:off": 2787,
+              "rotation:hold": 3419,
+              "engine:half": 3316,
+              "rotation:right": 1516,
+              "engine:full": 408
+            },
+            "sha256": "c03c154f5eb4153d09ddb0958bce6a2a1b0bdd6297b37f420b45498b830e42ba"
+          },
+          "validation": {
+            "rows": 1928,
+            "rollout_seeds": [
+              2000,
+              2003
+            ],
+            "labels": {
+              "rotation:left": 284,
+              "engine:off": 432,
+              "rotation:hold": 415,
+              "engine:half": 444,
+              "rotation:right": 265,
+              "engine:full": 88
+            },
+            "sha256": "8d9ff3f5fe352ba957b5a3cddb43fc2adda5cb171819c292b1148f0a5e3ba863"
+          }
+        }
+      },
+      "best_validation_accuracy": 1.0,
+      "torch": "2.12.0+cu130"
+    },
+    "inference": {
+      "bits": 6,
+      "group_size": 64,
+      "mode": "affine",
+      "source": "~/GWorkspace/lunar-laya/models/lunar-laya-supervised-mlx",
+      "choice_only": true,
+      "runtime": "mlx-choice-sequential",
+      "cache_limit_bytes": 0
+    },
+    "resolved_path": "~/GWorkspace/lunar-laya/models/lunar-laya-q6"
+  },
+  "python": "3.12.12",
+  "platform": "macOS-26.7-arm64-arm-64bit",
+  "seed": 3000,
+  "corpus_sha256": "ffc8acd5183c0dd143cacd6ea21216a59b0b47399ca37e5bdd79450e28dd6541",
+  "load_seconds": 0.638601542043034,
+  "first_call_ms": 1417.7662910078652,
+  "warmup": [
+    {
+      "seed": 2900,
+      "target": 0,
+      "time": 0,
+      "latency_ms": 1417.7662910078652,
+      "expected": {
+        "turn": -1,
+        "throttle": 0
+      },
+      "actual": {
+        "turn": -1,
+        "throttle": 0.0
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 2901,
+      "target": 1,
+      "time": 2.0000000000000013,
+      "latency_ms": 14.068291988223791,
+      "expected": {
+        "turn": 0,
+        "throttle": 0
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 2902,
+      "target": 2,
+      "time": 0.8000000000000004,
+      "latency_ms": 14.767249987926334,
+      "expected": {
+        "turn": -1,
+        "throttle": 0
+      },
+      "actual": {
+        "turn": -1,
+        "throttle": 0.0
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    }
+  ],
+  "summary": {
+    "samples": 96,
+    "p50_ms": 26.555416989140213,
+    "p95_ms": 39.46637501940131,
+    "mean_ms": 28.100495252147084,
+    "decisions_per_second": 35.586561412065954,
+    "within_200ms_fraction": 1.0,
+    "guidance_agreement": 1.0
+  },
+  "rows": [
+    {
+      "seed": 3000,
+      "target": 0,
+      "time": 0,
+      "latency_ms": 15.106834005564451,
+      "expected": {
+        "turn": -1,
+        "throttle": 0
+      },
+      "actual": {
+        "turn": -1,
+        "throttle": 0.0
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3000,
+      "target": 0,
+      "time": 2.2000000000000015,
+      "latency_ms": 16.753834031987935,
+      "expected": {
+        "turn": 1,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 1,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3000,
+      "target": 0,
+      "time": 4.59999999999999,
+      "latency_ms": 18.007041013333946,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3000,
+      "target": 0,
+      "time": 6.799999999999943,
+      "latency_ms": 19.92820797022432,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3000,
+      "target": 0,
+      "time": 9.199999999999893,
+      "latency_ms": 21.585084032267332,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3000,
+      "target": 0,
+      "time": 11.399999999999846,
+      "latency_ms": 20.32304200110957,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3000,
+      "target": 0,
+      "time": 13.799999999999795,
+      "latency_ms": 20.597916038241237,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3000,
+      "target": 0,
+      "time": 15.999999999999748,
+      "latency_ms": 20.40354098426178,
+      "expected": {
+        "turn": 1,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 1,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3000,
+      "target": 0,
+      "time": 18.399999999999697,
+      "latency_ms": 19.84995900420472,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3000,
+      "target": 0,
+      "time": 20.799999999999645,
+      "latency_ms": 21.19241701439023,
+      "expected": {
+        "turn": 0,
+        "throttle": 0
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3000,
+      "target": 0,
+      "time": 22.9999999999996,
+      "latency_ms": 19.9974580318667,
+      "expected": {
+        "turn": 0,
+        "throttle": 0
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3000,
+      "target": 0,
+      "time": 25.399999999999547,
+      "latency_ms": 19.210292026400566,
+      "expected": {
+        "turn": 0,
+        "throttle": 0
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3000,
+      "target": 0,
+      "time": 27.5999999999995,
+      "latency_ms": 19.9660420184955,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3000,
+      "target": 0,
+      "time": 29.99999999999945,
+      "latency_ms": 19.429625011980534,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3000,
+      "target": 0,
+      "time": 32.199999999999434,
+      "latency_ms": 21.283832960762084,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3000,
+      "target": 0,
+      "time": 34.59999999999981,
+      "latency_ms": 21.31749998079613,
+      "expected": {
+        "turn": -1,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": -1,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3000,
+      "target": 0,
+      "time": 37.000000000000185,
+      "latency_ms": 20.955082960426807,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3000,
+      "target": 0,
+      "time": 39.20000000000053,
+      "latency_ms": 24.32291698642075,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3000,
+      "target": 0,
+      "time": 41.600000000000904,
+      "latency_ms": 23.87304196599871,
+      "expected": {
+        "turn": -1,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": -1,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3000,
+      "target": 0,
+      "time": 43.80000000000125,
+      "latency_ms": 27.351624972652644,
+      "expected": {
+        "turn": -1,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": -1,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3000,
+      "target": 0,
+      "time": 46.20000000000162,
+      "latency_ms": 26.01983299246058,
+      "expected": {
+        "turn": 1,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 1,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3000,
+      "target": 0,
+      "time": 48.40000000000197,
+      "latency_ms": 30.282000021543354,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3000,
+      "target": 0,
+      "time": 50.80000000000234,
+      "latency_ms": 32.41408301983029,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3000,
+      "target": 0,
+      "time": 53.000000000002686,
+      "latency_ms": 34.2385420226492,
+      "expected": {
+        "turn": 1,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 1,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3000,
+      "target": 0,
+      "time": 55.40000000000306,
+      "latency_ms": 35.0537080084905,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3000,
+      "target": 0,
+      "time": 57.800000000003436,
+      "latency_ms": 42.338875005953014,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3000,
+      "target": 0,
+      "time": 60.00000000000378,
+      "latency_ms": 39.10554101457819,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3000,
+      "target": 0,
+      "time": 62.400000000004155,
+      "latency_ms": 40.04875000100583,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3000,
+      "target": 0,
+      "time": 64.60000000000429,
+      "latency_ms": 43.202999979257584,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3000,
+      "target": 0,
+      "time": 67.00000000000381,
+      "latency_ms": 40.2896250016056,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3000,
+      "target": 0,
+      "time": 69.20000000000337,
+      "latency_ms": 39.46637501940131,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3000,
+      "target": 0,
+      "time": 71.6000000000029,
+      "latency_ms": 33.47799996845424,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3001,
+      "target": 1,
+      "time": 0.19999999999999998,
+      "latency_ms": 32.19187498325482,
+      "expected": {
+        "turn": 1,
+        "throttle": 0
+      },
+      "actual": {
+        "turn": 1,
+        "throttle": 0.0
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3001,
+      "target": 1,
+      "time": 2.4000000000000017,
+      "latency_ms": 32.61233400553465,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3001,
+      "target": 1,
+      "time": 4.799999999999986,
+      "latency_ms": 31.509082997217774,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3001,
+      "target": 1,
+      "time": 6.999999999999939,
+      "latency_ms": 30.276792007498443,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3001,
+      "target": 1,
+      "time": 9.399999999999888,
+      "latency_ms": 30.95483302604407,
+      "expected": {
+        "turn": 0,
+        "throttle": 0
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3001,
+      "target": 1,
+      "time": 11.599999999999842,
+      "latency_ms": 32.00216602999717,
+      "expected": {
+        "turn": 1,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 1,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3001,
+      "target": 1,
+      "time": 13.99999999999979,
+      "latency_ms": 31.719999969936907,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3001,
+      "target": 1,
+      "time": 16.199999999999743,
+      "latency_ms": 33.26279198518023,
+      "expected": {
+        "turn": 0,
+        "throttle": 0
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3001,
+      "target": 1,
+      "time": 18.599999999999692,
+      "latency_ms": 33.32062502158806,
+      "expected": {
+        "turn": 1,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 1,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3001,
+      "target": 1,
+      "time": 20.99999999999964,
+      "latency_ms": 37.12479100795463,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3001,
+      "target": 1,
+      "time": 23.199999999999594,
+      "latency_ms": 35.32420803094283,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3001,
+      "target": 1,
+      "time": 25.599999999999543,
+      "latency_ms": 36.865083035081625,
+      "expected": {
+        "turn": 1,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 1,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3001,
+      "target": 1,
+      "time": 27.799999999999496,
+      "latency_ms": 34.92408397141844,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3001,
+      "target": 1,
+      "time": 30.199999999999445,
+      "latency_ms": 34.33604200836271,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3001,
+      "target": 1,
+      "time": 32.399999999999466,
+      "latency_ms": 35.6122920056805,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3001,
+      "target": 1,
+      "time": 34.79999999999984,
+      "latency_ms": 36.700791970361024,
+      "expected": {
+        "turn": 1,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 1,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3001,
+      "target": 1,
+      "time": 37.200000000000216,
+      "latency_ms": 37.66879200702533,
+      "expected": {
+        "turn": 1,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 1,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3001,
+      "target": 1,
+      "time": 39.40000000000056,
+      "latency_ms": 36.149749998003244,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3001,
+      "target": 1,
+      "time": 41.800000000000935,
+      "latency_ms": 34.29341601440683,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3001,
+      "target": 1,
+      "time": 44.00000000000128,
+      "latency_ms": 30.56620800634846,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3001,
+      "target": 1,
+      "time": 46.400000000001654,
+      "latency_ms": 31.625374977011234,
+      "expected": {
+        "turn": 0,
+        "throttle": 0
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3001,
+      "target": 1,
+      "time": 48.600000000002,
+      "latency_ms": 30.57920903665945,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3001,
+      "target": 1,
+      "time": 51.00000000000237,
+      "latency_ms": 32.320250000339,
+      "expected": {
+        "turn": -1,
+        "throttle": 0
+      },
+      "actual": {
+        "turn": -1,
+        "throttle": 0.0
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3001,
+      "target": 1,
+      "time": 53.20000000000272,
+      "latency_ms": 29.54283298458904,
+      "expected": {
+        "turn": 1,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 1,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3001,
+      "target": 1,
+      "time": 55.60000000000309,
+      "latency_ms": 30.044584011193365,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3001,
+      "target": 1,
+      "time": 58.00000000000347,
+      "latency_ms": 29.064083006232977,
+      "expected": {
+        "turn": 0,
+        "throttle": 0
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3001,
+      "target": 1,
+      "time": 60.20000000000381,
+      "latency_ms": 26.865874999202788,
+      "expected": {
+        "turn": 1,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 1,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3001,
+      "target": 1,
+      "time": 62.60000000000419,
+      "latency_ms": 28.457292006351054,
+      "expected": {
+        "turn": -1,
+        "throttle": 0
+      },
+      "actual": {
+        "turn": -1,
+        "throttle": 0.0
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3001,
+      "target": 1,
+      "time": 64.80000000000425,
+      "latency_ms": 26.880874997004867,
+      "expected": {
+        "turn": 1,
+        "throttle": 0
+      },
+      "actual": {
+        "turn": 1,
+        "throttle": 0.0
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3001,
+      "target": 1,
+      "time": 67.20000000000377,
+      "latency_ms": 26.482250017579645,
+      "expected": {
+        "turn": -1,
+        "throttle": 0
+      },
+      "actual": {
+        "turn": -1,
+        "throttle": 0.0
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3001,
+      "target": 1,
+      "time": 69.40000000000333,
+      "latency_ms": 26.903292047791183,
+      "expected": {
+        "turn": -1,
+        "throttle": 0
+      },
+      "actual": {
+        "turn": -1,
+        "throttle": 0.0
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3001,
+      "target": 1,
+      "time": 71.80000000000285,
+      "latency_ms": 26.069582963827997,
+      "expected": {
+        "turn": 0,
+        "throttle": 0
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3001,
+      "target": 1,
+      "time": 74.20000000000238,
+      "latency_ms": 25.522332987748086,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3002,
+      "target": 2,
+      "time": 1.4000000000000008,
+      "latency_ms": 25.780958007089794,
+      "expected": {
+        "turn": 0,
+        "throttle": 0
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3002,
+      "target": 2,
+      "time": 3.800000000000003,
+      "latency_ms": 27.016375039238483,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3002,
+      "target": 2,
+      "time": 5.99999999999996,
+      "latency_ms": 25.654292025137693,
+      "expected": {
+        "turn": -1,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": -1,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3002,
+      "target": 2,
+      "time": 8.39999999999991,
+      "latency_ms": 25.819665985181928,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3002,
+      "target": 2,
+      "time": 10.599999999999863,
+      "latency_ms": 25.334208039566875,
+      "expected": {
+        "turn": 0,
+        "throttle": 0
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3002,
+      "target": 2,
+      "time": 12.999999999999812,
+      "latency_ms": 25.796709000132978,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3002,
+      "target": 2,
+      "time": 15.199999999999765,
+      "latency_ms": 25.288333010394126,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3002,
+      "target": 2,
+      "time": 17.599999999999714,
+      "latency_ms": 25.698042009025812,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3002,
+      "target": 2,
+      "time": 19.999999999999662,
+      "latency_ms": 25.390167022123933,
+      "expected": {
+        "turn": 0,
+        "throttle": 0
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3002,
+      "target": 2,
+      "time": 22.199999999999616,
+      "latency_ms": 24.773333978373557,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3002,
+      "target": 2,
+      "time": 24.599999999999564,
+      "latency_ms": 25.31062497291714,
+      "expected": {
+        "turn": 0,
+        "throttle": 0
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3002,
+      "target": 2,
+      "time": 26.799999999999518,
+      "latency_ms": 25.307000032626092,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3002,
+      "target": 2,
+      "time": 29.199999999999466,
+      "latency_ms": 25.679708982352167,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3002,
+      "target": 2,
+      "time": 31.39999999999942,
+      "latency_ms": 24.7882500407286,
+      "expected": {
+        "turn": -1,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": -1,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3002,
+      "target": 2,
+      "time": 33.799999999999685,
+      "latency_ms": 25.91666695661843,
+      "expected": {
+        "turn": 1,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 1,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3002,
+      "target": 2,
+      "time": 36.20000000000006,
+      "latency_ms": 25.600749999284744,
+      "expected": {
+        "turn": 1,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 1,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3002,
+      "target": 2,
+      "time": 38.400000000000404,
+      "latency_ms": 25.948415976017714,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3002,
+      "target": 2,
+      "time": 40.80000000000078,
+      "latency_ms": 26.313250011298805,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3002,
+      "target": 2,
+      "time": 43.00000000000112,
+      "latency_ms": 25.1416249666363,
+      "expected": {
+        "turn": 1,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 1,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3002,
+      "target": 2,
+      "time": 45.4000000000015,
+      "latency_ms": 25.68424999481067,
+      "expected": {
+        "turn": 0,
+        "throttle": 0
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3002,
+      "target": 2,
+      "time": 47.60000000000184,
+      "latency_ms": 25.782084034290165,
+      "expected": {
+        "turn": -1,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": -1,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3002,
+      "target": 2,
+      "time": 50.00000000000222,
+      "latency_ms": 26.269999973010272,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3002,
+      "target": 2,
+      "time": 52.20000000000256,
+      "latency_ms": 25.006458978168666,
+      "expected": {
+        "turn": 0,
+        "throttle": 0
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3002,
+      "target": 2,
+      "time": 54.600000000002936,
+      "latency_ms": 26.063791010528803,
+      "expected": {
+        "turn": 1,
+        "throttle": 0
+      },
+      "actual": {
+        "turn": 1,
+        "throttle": 0.0
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3002,
+      "target": 2,
+      "time": 57.00000000000331,
+      "latency_ms": 26.69924998190254,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3002,
+      "target": 2,
+      "time": 59.200000000003655,
+      "latency_ms": 26.62858396070078,
+      "expected": {
+        "turn": 0,
+        "throttle": 0
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.0
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3002,
+      "target": 2,
+      "time": 61.60000000000403,
+      "latency_ms": 27.076041034888476,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3002,
+      "target": 2,
+      "time": 63.800000000004374,
+      "latency_ms": 26.090917002875358,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3002,
+      "target": 2,
+      "time": 66.20000000000397,
+      "latency_ms": 26.994124986231327,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3002,
+      "target": 2,
+      "time": 68.40000000000353,
+      "latency_ms": 24.713125021662563,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    },
+    {
+      "seed": 3002,
+      "target": 2,
+      "time": 70.80000000000305,
+      "latency_ms": 28.913124988321215,
+      "expected": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "actual": {
+        "turn": 0,
+        "throttle": 0.5
+      },
+      "guidance_match": true,
+      "server_latency_ms": null,
+      "usage": null
+    }
+  ],
+  "method": "3 excluded warmup calls; unique states; fixed cached actions; sequential wall latency including guidance, formatting, inference and transport; excludes model/server startup and physics"
+}

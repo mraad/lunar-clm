@@ -1,0 +1,68 @@
+{
+  "baseline": {
+    "summary": {
+      "seed": 3000,
+      "target": 1,
+      "x": 500.4732454343136,
+      "y": 27.995789968638963,
+      "vx": 0.002899837775433447,
+      "vy": -0.24655547730872615,
+      "angle": 0.7340529652198597,
+      "fuel": 82.00099999999523,
+      "time": 76.22000000000197,
+      "status": "landed",
+      "score": 50,
+      "decisions": 382,
+      "interventions": 0,
+      "latency_p50_ms": 0.0037910067476332188,
+      "latency_p95_ms": 0.005166977643966675,
+      "wall_seconds": 0.015142332995310426
+    },
+    "recording_sha256": "fc6d2272c7c383424944ac4b50993b50ac4018f7a85b0c7c9dc118c7f47381f2",
+    "recording": "dist/baseline.json"
+  },
+  "clm": {
+    "summary": {
+      "seed": 3000,
+      "target": 1,
+      "x": 472.44947450878203,
+      "y": 27.51151199999993,
+      "vx": -3.0035731693147163,
+      "vy": -37.840400000000244,
+      "angle": -17.26594703477997,
+      "fuel": 99.98400000000004,
+      "time": 18.419999999999696,
+      "status": "crashed",
+      "score": 0,
+      "decisions": 93,
+      "interventions": 0,
+      "latency_p50_ms": 747.714500001166,
+      "latency_p95_ms": 1089.6426659892313,
+      "wall_seconds": 74.3442470000009
+    },
+    "recording_sha256": "ff2c159bfc9c7c1175895532aae874217270e46006e5150917d1e7b10175d2e2",
+    "recording": "dist/clm.json"
+  },
+  "assisted": {
+    "summary": {
+      "seed": 3000,
+      "target": 1,
+      "x": 500.4732454343136,
+      "y": 27.995789968638963,
+      "vx": 0.002899837775433447,
+      "vy": -0.24655547730872615,
+      "angle": 0.7340529652198597,
+      "fuel": 82.00099999999523,
+      "time": 76.22000000000197,
+      "status": "landed",
+      "score": 50,
+      "decisions": 382,
+      "interventions": 318,
+      "latency_p50_ms": 723.415791959269,
+      "latency_p95_ms": 1100.4247919772752,
+      "wall_seconds": 293.9036683750455
+    },
+    "recording_sha256": "0e1feab5af22af91ffbd32ac34dc54b49067e03e529625c09ab6da5c8085e222",
+    "recording": "dist/assisted.json"
+  }
+}

@@ -1,0 +1,6 @@
+# CLM's head/API dependencies; llama.cpp replaces its CUDA-only vLLM dependency.
+numpy==2.5.3
+requests==2.34.2
+torch==2.14.0
+fastapi==0.141.1
+uvicorn==0.54.0

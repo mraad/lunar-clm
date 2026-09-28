@@ -1,0 +1,34 @@
+{
+  "date_utc": "2026-09-28T14:17:51.419020+00:00",
+  "hardware": "Apple M4 Max",
+  "unified_memory_bytes": 137438953472,
+  "python": "3.12.12",
+  "platform": "macOS-26.7-arm64-arm-64bit",
+  "packages": {
+    "mlx": "0.32.2",
+    "mlx-embeddings": "0.1.0",
+    "numpy": "2.5.3",
+    "torch": "2.14.0",
+    "transformers": "5.17.0",
+    "tokenizers": "0.23.2",
+    "huggingface-hub": "1.33.0"
+  },
+  "files": {
+    "models/qwen3-embedding-0.6b-8bit/model.safetensors": {
+      "sha256": "fe956e8d346b4f08215a3cfc48a874354f900c20a59e965b75df0d9d77c54b28",
+      "bytes": 633152041
+    },
+    "models/lunar-small/head.npz": {
+      "sha256": "5db1121b476cc6d8a45e304dcbfdf0a81a7009c2a7e03d3385b302f5584225e0",
+      "bytes": 1117742
+    },
+    "lunar_clm/small.py": {
+      "sha256": "0d88fa90eed2d0f3ed7e85c0144c6d415997f7b6156e2aa4c97d1f232f2910ab",
+      "bytes": 4899
+    },
+    "lunar_clm/train_small.py": {
+      "sha256": "b66d2ef7a3882307b4323317f0a4842ebea293290870a2fa9a5cad64e4d42795",
+      "bytes": 9169
+    }
+  }
+}
