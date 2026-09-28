@@ -12,7 +12,7 @@ import sys
 from time import perf_counter
 
 from .cli import percentiles, positive_int, write_json
-from .game import PADS, Game
+from .game import PADS, TERRAIN, Game
 from .guidance import QUESTIONS, guidance, observation
 from .pilot import Pilot
 from .small import QUESTION, short_observation
@@ -72,9 +72,13 @@ def main(argv=None):
         start = perf_counter()
         if args.backend == "laya":
             sys.path.insert(0, str(args.laya_root.resolve()))
+            from lunar_laya.game import PADS as LAYA_PADS, TERRAIN as LAYA_TERRAIN
             from lunar_laya.pilot import Pilot as LayaPilot, QUESTIONS as LAYA_QUESTIONS
             if LAYA_QUESTIONS != QUESTIONS:
                 raise ValueError("Laya questions differ; comparison would not be matched")
+            # Laya's pilot computes guidance from its own world; a different one skews every request.
+            if (LAYA_PADS, LAYA_TERRAIN) != (PADS, TERRAIN):
+                raise ValueError("Laya terrain or pads differ; comparison would not be matched")
             pilot = LayaPilot("laya", args.model or "aac6fef/laya-multilingual-mlx")
         else:
             pilot = Pilot(args.backend, args.model, args.base_url)

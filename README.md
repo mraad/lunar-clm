@@ -5,10 +5,48 @@ Python simulates a flight; a standalone canvas page replays it with controls,
 fuel, model probabilities, latency, and any guidance overrides. No frontend
 framework, build step, CDN, or Python dependencies in the game client.
 
+![The trained small CLM flies an upside-down start over two hills and lands on the tallest pad](docs/landing.gif)
+
+*The trained small CLM, unassisted. It starts upside down and at rest above
+the left hill, rights itself, crosses two hills and lands on pad 3, the tallest
+and narrowest pad. The flight lasts 128 simulated seconds over 639 decisions,
+shown here at about 8× speed. Every decision matched guidance.*
+
 The physics, guidance, two typed questions, and recording format come from
 `../lunar-laya` at `74e66c202a568a4ee6d32fe440d6f34653c05c38`.
 CLM replaces Laya inference. The game runs independently of that checkout;
-only the optional Laya benchmark imports it.
+only the optional Laya benchmark imports it. The terrain has since been
+redrawn so every pad tops its own hill, and guidance was extended to cross
+those hills from any start. See [Terrain change](#terrain-change) for what
+that means for the recorded results.
+
+## Interactive app
+
+Pick where the lander starts, how it is tilted and which pad to land on,
+then watch the chosen pilot fly it live:
+
+```sh
+.venv/bin/python -m lunar_clm.serve            # small CLM pilot, http://127.0.0.1:8000/
+python3 -m lunar_clm.serve --pilot baseline    # no model or dependencies needed
+```
+
+- **Start position.** Click anywhere in the sky, or use the position and
+  height sliders. The start stays at least 50 m from each wall and 50 m above
+  the terrain under the hull, and at most 690 m high.
+- **Orientation.** The tilt slider covers the full circle, from -180° to 180°.
+  Upside-down starts are allowed: guidance cuts the engine beyond 60° of tilt
+  and rotates upright first.
+- **Random start.** Picks a random valid position and tilt. The pad choice is
+  kept.
+- **Landing pad.** Three buttons show each pad's height and score multiplier.
+- **Launch.** The lander starts at rest. Frames stream in as the pilot decides,
+  and playback starts immediately at simulation speed. Each launch is kept in
+  the flight selector, so earlier flights can be replayed and scrubbed.
+
+The server listens on 127.0.0.1 only and flies one flight at a time. It takes
+the same `--pilot`, `--model`, `--base-url` and `--timeout` options as the CLI,
+plus `--port`. The model loads once at startup. Invalid starts are rejected
+with a message shown on the page.
 
 ## How it works
 
@@ -19,6 +57,9 @@ Every control step runs the same pipeline, whichever pilot is flying:
 2. **Guide.** A deterministic PD controller computes the requested rotation
    (`left`, `hold`, `right`) and engine power (`off`, `half`, `full`), plus the
    metrics it used: altitude, pad offset, desired tilt and vertical speed.
+   Until the lander is over the pad, it holds 120 m above the highest terrain
+   between the lander and the pad. Below that ridge it climbs before moving
+   sideways.
 3. **Describe.** The telemetry and guidance request are written as text. The
    8B CLM receives a long observation and two questions. The small CLM receives
    a short observation and one question over nine combined actions.
@@ -150,7 +191,8 @@ as one JSON line.
 ## Replay page
 
 The replay is a single HTML file with the recording embedded. Open it directly
-from disk; it needs no server or network access.
+from disk; it needs no server or network access. The same page becomes the
+interactive app when `lunar_clm.serve` serves it.
 
 - **Viewport.** Terrain, the three pads with the target highlighted, the
   flight trail, the lander and its engine flame, plus altitude, vertical and
@@ -196,16 +238,17 @@ A flight still flying at the step limit is recorded as `truncated`.
 
 ## Physics and scoring
 
-The world is 1000 m wide with a fixed piecewise terrain and three flat pads.
+The world is 1000 m wide with a fixed piecewise terrain. Each of the three
+flat pads tops its own hill, at a different height, with valleys between.
 Lunar gravity is 1.62 m/s², full thrust gives 5 m/s², and attitude jets turn
 at 30°/s. Main engine and attitude jets draw on one 100-unit fuel tank. When
 the tank runs dry mid-step, thrust and turning scale down to the fuel left.
 
 | Pad | Span (m) | Height (m) | Landing score |
 |---|---|---|---|
-| 0 | 150–240 | 30 | 100 |
-| 1 (default) | 440–560 | 20 | 50 |
-| 2 | 775–825 | 40 | 200 |
+| 0 | 120–210 | 140 | 100 |
+| 1 (default) | 430–550 | 70 | 50 |
+| 2 | 780–830 | 210 | 200 |
 
 Contact is a landing only when the whole hull is over a pad, horizontal speed
 is at most 2 m/s, downward speed is at most 3 m/s, and tilt is within 8°.
@@ -213,7 +256,12 @@ Any other contact is a crash. Leaving the world or rising above 750 m is
 `out_of_bounds`, and 180 simulation seconds is a `timeout`. Terminal states
 are absorbing. Each seed places the lander within 100 m of the target pad
 center at a height of 450 m, descending at 8 m/s, with random
-horizontal drift and tilt.
+horizontal drift and tilt. Interactive starts begin at rest.
+
+Beyond 60° of tilt the engine would push sideways or down, so guidance turns
+upright before thrusting. Within the start limits above, guidance lands from
+every tested start on every pad at every tilt: a grid of 3,348 starts, plus
+120 seeded flights.
 
 ## Local CLM on Apple Silicon
 
@@ -311,6 +359,21 @@ Restart CLM before repeating the benchmark; its state cache otherwise makes
 identical reruns much faster. CLM's recorded `usage.input_tokens` allows checking
 that timed requests really executed the encoder.
 
+## Terrain change
+
+Everything under `results/` was measured on the original lunar-laya terrain,
+where the pads sat in valleys at 30, 20 and 40 m. Those files are kept as a
+record of that setup and have not been re-measured on the hills.
+
+On the new terrain, the unchanged trained small CLM still landed all nine
+held-out seeds and 18 custom starts unassisted. Every one of those decisions
+matched guidance, including inverted and far-away starts. Retraining was not
+needed.
+
+The Laya backend computes guidance from its own copy of the world, so the
+benchmark now refuses to run it when Laya's terrain or pads differ. Pinning
+this repo's terrain back to Laya's would restore that comparison.
+
 ## Tests
 
 ```sh
@@ -319,8 +382,10 @@ node tests/test_replay.cjs
 ```
 
 The dependency-free checks cover physics and landing rules, seeded landings,
-adapter wire format, invalid answers, explicit assistance, recording safety,
-distinct benchmark states, statistics, and replay controls. They use a fake model
+landings from custom starts, the terrain layout, adapter wire format, invalid
+answers, explicit assistance, recording safety, the live server and its input
+validation, distinct benchmark states, statistics, and both replay and
+interactive page controls. They use a fake model
 only for adapter tests; the measurements and flight artifacts use real weights.
 
 ## Project layout
@@ -332,11 +397,13 @@ only for adapter tests; the measurements and flight artifacts use real weights.
 | `lunar_clm/small.py` | small CLM encoder, heads, nine actions, short observation |
 | `lunar_clm/pilot.py` | pilot modes, CLM HTTP client, answer validation |
 | `lunar_clm/cli.py` | episode loop, recording, replay export |
-| `lunar_clm/replay.html` | replay page template |
+| `lunar_clm/serve.py` | local server for the interactive app |
+| `lunar_clm/replay.html` | replay page and interactive app |
 | `lunar_clm/benchmark.py` | fixed-corpus latency benchmark for all backends |
 | `lunar_clm/train_small.py` | dataset generation, embedding cache, head training |
 | `lunar_clm/evaluate_small.py` | held-out unassisted flights for the small CLM |
 | `results/` | committed measurements and write-ups |
+| `docs/landing.gif` | README demo, captured from the replay page |
 | `models/`, `dist/` | downloaded weights and generated runs; not committed |
 
 ## Sources

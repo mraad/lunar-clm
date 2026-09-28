@@ -16,6 +16,7 @@ train = ["torch>=2.1"]
 [project.scripts]
 lunar-clm = "lunar_clm.cli:main"
 lunar-clm-benchmark = "lunar_clm.benchmark:main"
+lunar-clm-serve = "lunar_clm.serve:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["lunar_clm"]

@@ -24,15 +24,20 @@ def write_json(path, obj, **kw):
     path.write_text(json.dumps(obj, allow_nan=False, **kw) + "\n")
 
 
-def run_episode(pilot, seed, target, steps):
-    start = perf_counter()
+def run_episode(pilot, seed, target, steps, start=None, on_frame=None):
+    """Fly one episode from the seeded start, or from an explicit `start` State."""
+    clock = perf_counter()
     game = Game(seed, target)
+    if start is not None:
+        game.state = start
     frames = []
     while game.state.status == "flying" and len(frames) < steps:
         before = game.snapshot()
         command, decision = pilot.decide(game)
         after = game.step(command)
         frames.append({"before": before, "decision": decision, "after": after})
+        if on_frame is not None:
+            on_frame(frames[-1])
     terminal = game.snapshot()
     if terminal["status"] == "flying":
         terminal["status"] = "truncated"
@@ -42,7 +47,7 @@ def run_episode(pilot, seed, target, steps):
                "interventions": sum(f["decision"]["intervened"] for f in frames),
                "guidance_matches": sum(f["decision"]["executed"] == f["decision"]["reference"] for f in frames),
                "latency_p50_ms": p50, "latency_p95_ms": p95,
-               "wall_seconds": perf_counter() - start}
+               "wall_seconds": perf_counter() - clock}
     return {"summary": summary, "frames": frames}
 
 
@@ -61,13 +66,16 @@ def new_recording(pilot):
                       "control_steps": CONTROL_STEPS}, "episodes": []}
 
 
-def export_replay(record, path):
+def replay_page(record):
     # Escape '<' so even a model path containing </script> remains inert JSON.
     payload = json.dumps(record, separators=(",", ":"), allow_nan=False).replace("<", "\\u003c")
-    template = Path(__file__).with_name("replay.html").read_text()
+    return Path(__file__).with_name("replay.html").read_text().replace("/* RECORDING */null", payload)
+
+
+def export_replay(record, path):
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(template.replace("/* RECORDING */null", payload))
+    path.write_text(replay_page(record))
 
 
 def positive_int(value):

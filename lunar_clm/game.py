@@ -10,10 +10,11 @@ TURN_RATE = 30.0  # degrees/second; positive tilts toward +x
 DT = 0.02
 CONTROL_STEPS = 10
 RADIUS = 8.0
-TERRAIN = ((0, 85), (80, 120), (150, 30), (240, 30), (300, 105),
-           (370, 70), (440, 20), (560, 20), (640, 100), (720, 55),
-           (775, 40), (825, 40), (900, 130), (1000, 90))
-PADS = ((150, 240, 30, 2), (440, 560, 20, 1), (775, 825, 40, 4))
+# Each pad tops its own hill; heights differ so approaches cross ridges and valleys.
+TERRAIN = ((0, 45), (60, 70), (120, 140), (210, 140), (270, 45), (330, 25),
+           (380, 40), (430, 70), (550, 70), (600, 30), (680, 40),
+           (780, 210), (830, 210), (900, 80), (1000, 60))
+PADS = ((120, 210, 140, 2), (430, 550, 70, 1), (780, 830, 210, 4))
 
 
 def ground(x):
@@ -22,6 +23,11 @@ def ground(x):
         if x <= x1:
             return y0 + (y1 - y0) * (x - x0) / (x1 - x0)
     return TERRAIN[-1][1]
+
+
+def ceiling(x0, x1):
+    """Highest terrain over [x0, x1], including vertices between the ends."""
+    return max(ground(x0), ground(x1), *(y for px, y in TERRAIN if x0 <= px <= x1))
 
 
 @dataclass(frozen=True)
@@ -45,6 +51,23 @@ class State:
     time: float = 0
     status: str = "flying"
     score: int = 0
+
+
+# Custom starts: away from the walls, clear of the terrain and inside the visible sky.
+START_MARGIN = 50
+START_CEILING = 690
+
+
+def custom_start(x, y, angle):
+    """Validated resting start; guidance recovers from any tilt inside these limits."""
+    if not all(isinstance(v, (int, float)) and not isinstance(v, bool) and math.isfinite(v) for v in (x, y, angle)):
+        raise ValueError("start x, y and angle must be finite numbers")
+    if not START_MARGIN <= x <= 1000 - START_MARGIN:
+        raise ValueError(f"start x must be within {START_MARGIN}..{1000 - START_MARGIN} m")
+    lowest = ceiling(x - RADIUS, x + RADIUS) + RADIUS + START_MARGIN
+    if not lowest <= y <= START_CEILING:
+        raise ValueError(f"start y at x={x:.0f} must be within {lowest:.0f}..{START_CEILING} m")
+    return State(x, y, 0, 0, (angle + 180) % 360 - 180)
 
 
 class Game:
@@ -91,6 +114,4 @@ class Game:
 
     def surface_height(self):
         """Conservative horizontal footprint, including terrain vertices under the hull."""
-        x = self.state.x
-        return max(ground(x - RADIUS), ground(x + RADIUS),
-                   *(y for px, y in TERRAIN if x - RADIUS <= px <= x + RADIUS))
+        return ceiling(self.state.x - RADIUS, self.state.x + RADIUS)

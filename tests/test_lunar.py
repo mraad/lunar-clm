@@ -5,7 +5,8 @@ import tempfile
 import unittest
 
 from lunar_clm.cli import export_replay, main, run_episode
-from lunar_clm.game import Command, DT, Game, GRAVITY, PADS, RADIUS, State, ground
+from lunar_clm.game import (Command, DT, Game, GRAVITY, PADS, RADIUS, START_MARGIN, State,
+                            ceiling, custom_start, ground)
 from lunar_clm.pilot import Pilot, QUESTIONS, validate_answers
 
 
@@ -58,7 +59,7 @@ class LunarTests(unittest.TestCase):
         for vx, vy, tilt, status in ((0, -1, 0, "landed"), (3, -1, 0, "crashed"),
                                      (0, -4, 0, "crashed"), (0, -1, 10, "crashed")):
             g = Game()
-            g.state = State(500, 28.01, vx, vy, tilt)
+            g.state = State(500, PADS[1][2] + RADIUS + 0.01, vx, vy, tilt)
             g.step(Command())
             self.assertEqual(g.state.status, status)
             final = g.snapshot()
@@ -70,12 +71,17 @@ class LunarTests(unittest.TestCase):
             g.step(Command())
             self.assertEqual(g.state.score, 50 * pad[3])
         g = Game()
-        g.state = State(440, 28.01, 0, -1, 0)  # hull straddles sloped edge
+        g.state = State(PADS[1][0], PADS[1][2] + RADIUS + 0.01, 0, -1, 0)  # hull straddles hill edge
         g.step(Command())
         self.assertEqual(g.state.status, "crashed")
 
     def test_bounds_timeout_terrain(self):
-        self.assertEqual(ground(500), 20)
+        self.assertEqual(ground(500), PADS[1][2])
+        # Every pad tops its own hill: terrain falls away on both sides, heights differ.
+        self.assertEqual(len({pad[2] for pad in PADS}), len(PADS))
+        for x0, x1, height, _ in PADS:
+            self.assertLess(ground(x0 - 30), height)
+            self.assertLess(ground(x1 + 30), height)
         g = Game()
         g.state.x = 1
         g.step(Command())
@@ -92,6 +98,19 @@ class LunarTests(unittest.TestCase):
                     e = run_episode(Pilot("baseline"), seed, target, 900)
                     self.assertEqual(e["summary"]["status"], "landed")
                     self.assertEqual(e["summary"]["interventions"], 0)
+
+    def test_guidance_lands_from_custom_starts(self):
+        for target in range(len(PADS)):
+            for x in (50, 330, 640, 950):
+                lowest = ceiling(x - RADIUS, x + RADIUS) + RADIUS + START_MARGIN
+                for y in (lowest, 400):
+                    for angle in (-180, -90, 0, 120):
+                        with self.subTest(target=target, x=x, y=y, angle=angle):
+                            e = run_episode(Pilot("baseline"), 0, target, 900, start=custom_start(x, y, angle))
+                            self.assertEqual(e["summary"]["status"], "landed")
+        for bad in ((10, 400, 0), (500, 60, 0), (500, 400, math.nan), (500, 700, 0), (True, 400, 0)):
+            with self.assertRaises(ValueError):
+                custom_start(*bad)
 
     def test_model_proposal_and_intervention_are_separate(self):
         game = Game()
