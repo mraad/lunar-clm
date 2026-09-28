@@ -418,5 +418,5 @@ encoder weights retain their upstream terms. No Atari ROM or assets are used.
 
 ## License
 
-This project's code is released under the [MIT License](LICENSE). Models,
+This project's code is released under the [Apache License 2.0](LICENSE). Models,
 weights and dependencies keep their own licenses, as noted above.
